@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const emailField = document.getElementById("email");
       const password1Field = document.getElementById("password1");
       const password2Field = document.getElementById("password2");
+      const checkbox = document.getElementById("terminos")
 
       // Función para mostrar un mensaje de alerta
       function showError(input, message) {
@@ -33,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // Validar y quitar mensajes de alerta previos
       const feedbackElements = document.querySelectorAll(".invalid-feedback, .valid-feedback");
       feedbackElements.forEach((element) => element.remove());
+
+      if(!checkbox.checked){
+        showError(checkbox, "Acepta los terminos y condiciones");
+      } else {
+        showSuccess(checkbox)
+      }
 
       if (nombreField.value.trim() === "") {
         showError(nombreField, "Debe ingresar un nombre");
@@ -82,3 +89,4 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   }
+
