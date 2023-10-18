@@ -54,33 +54,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (password1Field.value.trim() === "") {
         showError(password1Field, "Debe ingresar una contraseña");
-    } else if (password2Field.value.trim().length < 6) {
-
-
-      } else {
+    } else if (password1Field.value.trim().length < 6) {
+        showError(password1Field, "La contraseña debe tener al menos 6 caracteres");
+    } else {
         showSuccess(password1Field);
-      }
-
-      if (password2Field.value.trim() === "") {
-        showError(password2Field, "Debe repetir la contraseña");
-
-
-      } else {
-        showSuccess(password2Field);
-      }
-
-      // Validar que las contraseñas coincidan
-      if (password1Field.value !== password2Field.value) {
-        showError(password1Field, "Las contraseñas no coinciden");
-        showError(password2Field, "Las contraseñas no coinciden");
-      } else {
-        showSuccess(password1Field);
-        showSuccess(password2Field);
-      }
-
+    
+        if (password2Field.value.trim() === "") {
+            showError(password2Field, "Debe repetir la contraseña");
+        } else if (password2Field.value.trim().length < 6) {
+            showError(password2Field, "La contraseña debe tener al menos 6 caracteres");
+        } else if (password1Field.value !== password2Field.value) {
+            showError(password2Field, "Las contraseñas no coinciden");
+        } else {
+            showSuccess(password2Field);
+        }
+    }
       // Si todos los campos están validados, puedes enviar el formulario
       if (document.querySelectorAll(".is-invalid").length === 0) {
         // form.submit(); // Descomenta esta línea para enviar el formulario
       }
     });
   });
+
+  nombre.classList.remove("is-invalid");
+  apellido.classList.remove("is-invalid");
+  email.classList.remove("is-invalid");
+  password1.classList.remove("is-invalid");
+  password2.classList.remove("is-invalid");
+  terminosError.style.display = "none";
+  
