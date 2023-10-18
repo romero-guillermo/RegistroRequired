@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const emailField = document.getElementById("email");
       const password1Field = document.getElementById("password1");
       const password2Field = document.getElementById("password2");
+      const checkbox = document.getElementById("terminos");
+      const botonTerminos = document.getElementById("terminosServicio");
 
       // Función para mostrar un mensaje de alerta
       function showError(input, message) {
@@ -33,6 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // Validar y quitar mensajes de alerta previos
       const feedbackElements = document.querySelectorAll(".invalid-feedback, .valid-feedback");
       feedbackElements.forEach((element) => element.remove());
+      if(!checkbox.checked){
+        showError(botonTerminos, "Acepta los terminos y condiciones")
+      }
+      if(!checkbox.checked){
+        showError(checkbox);
+      } else {
+        showSuccess(checkbox)
+      }
 
       if (nombreField.value.trim() === "") {
         showError(nombreField, "Debe ingresar un nombre");
