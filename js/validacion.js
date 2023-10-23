@@ -58,27 +58,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (emailField.value.trim() === "") {
         showError(emailField, "Debe ingresar un correo electrónico");
+      } else if (!isValidEmail(emailField.value.trim())) {
+        showError(emailField, "Debe ingresar un correo electrónico válido");
       } else {
         showSuccess(emailField);
       }
 
       if (password1Field.value.trim() === "") {
         showError(password1Field, "Debe ingresar una contraseña");
-    } else if (password1Field.value.trim().length < 6) {
+
+      } else if (password1Field.value.trim().length < 6) {
         showError(password1Field, "La contraseña debe tener al menos 6 caracteres");
-    } else {
+      } else {
         showSuccess(password1Field);
-    
-        if (password2Field.value.trim() === "") {
-            showError(password2Field, "Debe repetir la contraseña");
-        } else if (password2Field.value.trim().length < 6) {
-            showError(password2Field, "La contraseña debe tener al menos 6 caracteres");
-        } else if (password1Field.value !== password2Field.value) {
-            showError(password2Field, "Las contraseñas no coinciden");
-        } else {
-            showSuccess(password2Field);
-        }
-    }
+      }
+
+      if (password2Field.value.trim() === "") {
+        showError(password2Field, "Debe repetir la contraseña");
+      } else if (password1Field.value !== password2Field.value) {
+        showError(password2Field, "Las contraseñas no coinciden");
+      } else {
+        showSuccess(password2Field);
+      }
+
+
       // Si todos los campos están validados, puedes enviar el formulario
       if (document.querySelectorAll(".is-invalid").length === 0) {
         // form.submit(); // Descomenta esta línea para enviar el formulario
@@ -86,10 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  nombre.classList.remove("is-invalid");
-  apellido.classList.remove("is-invalid");
-  email.classList.remove("is-invalid");
-  password1.classList.remove("is-invalid");
-  password2.classList.remove("is-invalid");
-  terminosError.style.display = "none";
-  
+
+  // Función para validar un correo electrónico
+  function isValidEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
